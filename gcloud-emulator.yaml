@@ -1,0 +1,30 @@
+# Docker compose file for emulating gcloud services
+#
+# See https://cloud.google.com/sdk/gcloud/reference/beta/emulators/
+# for a list of all emulators
+# 
+# You would still have to set some envvars of the app to use the emulator
+# instead of pointing to google.
+#
+# For the datastore, it is the following:
+# export DATASTORE_DATASET=emulator
+# export DATASTORE_EMULATOR_HOST=localhost:8081
+# export DATASTORE_EMULATOR_HOST_PATH=localhost:8081/datastore
+# export DATASTORE_HOST=http://localhost:8081
+# export DATASTORE_PROJECT_ID=emulator
+version: '3'
+services:
+    gcloud-datastore-emulator:
+        image: google/cloud-sdk
+        container_name: gcloud-datastore-emulator
+        ports:
+          - "8432:8432"
+        command:
+           /bin/bash -c "gcloud config set project emulator && gcloud beta emulators datastore start --quiet --data-dir /mnt/data --host-port 0.0.0.0:8432"
+        volumes:
+          - gcloud-emu:/mnt/data
+
+volumes:
+    gcloud-emu:
+        driver: local
+
