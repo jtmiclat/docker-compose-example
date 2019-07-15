@@ -1,0 +1,22 @@
+# Docker-compose for streamset datacollector
+# 
+# To install extensions
+#
+# docker-compose exec streamsets-dc stagelibs -install=<library>
+# docker-compose restart streamsets-dc
+version: '3'
+services:
+    streamsets-dc:
+        image: streamsets/datacollector:3.9.1
+        container_name: streamsets-dc
+        ports:
+            - "18630:18630"
+        volumes:
+            - sdc-data:/data # Idk what this is for RIP
+            - sdc-stagelibs:/opt/streamsets-datacollector-3.9.1/streamsets-libs # Persisting Libraries
+            - ./files:/files # Mounts local to docker image
+volumes:
+    sdc-data:
+        driver: local
+    sdc-stagelibs:
+        driver: local
