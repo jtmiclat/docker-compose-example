@@ -1,7 +1,9 @@
 # Docker compose file  for a single elasticsearch node
 # 
 # Elastic Search Consumes a decent amount of memory so be aware
-# of that
+# of that.
+#
+# Ensure kibana and elasticsearch have the same version
 version: '3'
 services:
   elasticsearch:
@@ -15,6 +17,10 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.1
+    ports:
+      - 5601:5601"
 volumes:
   esdata1:
     driver: local
