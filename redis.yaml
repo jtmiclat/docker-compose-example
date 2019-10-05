@@ -1,0 +1,17 @@
+# Docker compose file  for a single redis instance with persistance
+
+version: '3'
+services:
+    postgres:
+        image: bitnami/redis:latest
+        container_name: redis
+        environment:
+            ALLOW_EMPTY_PASSWORD: "yes" # No password
+        ports:
+            - "6379:6379"
+        volumes:
+            - 'redis-data:/bitnami/redis/data'
+volumes:
+    redis-data:
+        driver: local
+
