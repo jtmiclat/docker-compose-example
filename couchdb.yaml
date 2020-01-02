@@ -1,0 +1,13 @@
+
+version: "3"
+    
+services:
+    couchdb:
+        image: couchdb:2.3.0
+        ports:
+             - "5984:5984"
+        volumes:
+             - couchdb-data:/opt/couchdb/etc/local.d 
+volumes:
+    couchdb-data:
+        driver: local
