@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ms:
+    image: getmeili/meilisearch:v0.10
+    container_name: meilisearch
+    ports:
+      - 7700:7700
+    volumes:
+      - msdata:/data.ms
+volumes:
+  msdata:
+    driver: local
