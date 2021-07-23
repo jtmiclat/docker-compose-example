@@ -4,7 +4,7 @@ version: "3"
 services:
   agensgraph:
     image: bitnine/agensgraph:v2.1.3
-    container_name: postgres
+    container_name: agensgraph
     environment:
       POSTGRES_USER: postgres # Name of superuser
       POSTGRES_PASSWORD: password # Password of superuser
